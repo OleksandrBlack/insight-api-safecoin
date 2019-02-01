@@ -1,7 +1,7 @@
 {
   "name": "insight-api-safecoin",
-  "description": "A Safecoin blockchain REST and web socket API service for Bitcore Node.",
-  "version": "0.4.3",
+  "description": "A Safecoin blockchain REST and web socket API service for safecoin-bitcore Node.",
+  "version": "1.1.0",
   "repository": "git-ssh://git@github.com:Fair-Exchange/insight-api-safecoin.git",
   "contributors": [
     {
@@ -39,6 +39,14 @@
     {
       "name": "Jack Grigg",
       "email": "jack@z.cash"
+    },
+    {
+      "name": "TheTrunk",
+      "email": "tadeas.kmenta@zel.cash"
+    },
+    {
+      "name": "Simon Liu",
+      "email": "simon@z.cash"
     }
   ],
   "bugs": {
@@ -53,6 +61,7 @@
     "safecoin api",
     "blockchain api",
     "json",
+    "safecoin",
     "bitcore"
   ],
   "engines": {
@@ -65,15 +74,18 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib-safecoin": "git+ssh://git@github.com:Fair-Exchange/bitcore-lib-safecoin",
-    "bitcore-message-safecoin": "git+ssh://git@github.com:Fair-Exchange/bitcore-message-safecoin",
+    "bignumber.js": "^4.0.2",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",
     "lru-cache": "^4.0.1",
+    "mongoose": "5.1.7",
     "morgan": "^1.7.0",
-    "request": "^2.64.0"
+    "bitcore-lib-safecoin": "git+ssh://git@github.com:Fair-Exchange/bitcore-lib-safecoin",
+    "bitcore-message-safecoin": "git+ssh://git@github.com:Fair-Exchange/bitcore-message-safecoin",
+    "request": "^2.83.0"
   },
+  "peerDependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
