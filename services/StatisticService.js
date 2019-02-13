@@ -1271,19 +1271,7 @@ var subsidy = new BN(0)
 } else if (height < 527378) {
   	var subsidy = new BN(10 * 1e8)
   
-} else if (height < 567378) {
-  	var subsidy = new BN(9 * 1e8)
-  
-} else if (height < 647378) {
-  	var subsidy = new BN(8 * 1e8)
-  
-} else if (height < 727378) {
-  	var subsidy = new BN(7 * 1e8)
-  
-} else if (height < 807378) {
-  	var subsidy = new BN(6 * 1e8)
-  
-} else if (height < 887378) {
+} else if (height < 557378) {
   	var subsidy = new BN(5 * 1e8)
   
 } else if (height < 1207378) {
@@ -1306,8 +1294,7 @@ var subsidy = new BN(0)
   
 } else if (height < 5256000) {
   	var subsidy = new BN(0.125 * 1e8) // 10 Year Mark, Safecoin to implement POS prior to this
-  
-};
+}
     var sub;
     sub = parseInt(subsidy.toString(10));
     callback(null, sub);
@@ -1380,19 +1367,7 @@ var subsidy = new BN(0)
 } else if (height < 527378) {
   	var subsidy = new BN(10 * 1e8)
   
-} else if (height < 567378) {
-  	var subsidy = new BN(9 * 1e8)
-  
-} else if (height < 647378) {
-  	var subsidy = new BN(8 * 1e8)
-  
-} else if (height < 727378) {
-  	var subsidy = new BN(7 * 1e8)
-  
-} else if (height < 807378) {
-  	var subsidy = new BN(6 * 1e8)
-  
-} else if (height < 887378) {
+} else if (height < 557378) {
   	var subsidy = new BN(5 * 1e8)
   
 } else if (height < 1207378) {
@@ -1415,8 +1390,7 @@ var subsidy = new BN(0)
   
 } else if (height < 5256000) {
   	var subsidy = new BN(0.125 * 1e8) // 10 Year Mark, Safecoin to implement POS prior to this
-  
-};
+}
     return parseInt(subsidy.toString(10));
 };
 
