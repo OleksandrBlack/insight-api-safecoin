@@ -1,51 +1,199 @@
 [
     {
-        "poolName": "Equipool",
-        "url": "https://equipool.1ds.us/getting_started",
-        "searchStrings": [
-            "Rpn8RJvmyjyGpLWPX1TN1SGueVVqLQnkaR"
-        ]
-    },
-    {
-        "poolName": "MinerMore.com",
-        "url": "https://equipool.1ds.us/getting_started",
-        "searchStrings": [
-            "RmV56kPW7jeCmDA8sukHwbR7RZSbg9NFNF"
-        ]
-    },
-    {
-        "poolName": "Solopool.org",
+        "poolName": "CoinBlockers",
         "url": "https://zel.coinblockers.com/",
         "searchStrings": [
-            "RaAe8Jkyi2M4tm5XFw6McBLtAAwDZDphEA"
+	    "t1RpbpUWos9fNbAFPXy9fAm1jVqYYBUi1ou"
         ]
     },
     {
-        "poolName": "Voidr.net",
-        "url": "https://safecoin.voidr.net/",
+        "poolName": "equipool.1ds.us",
+        "url": "https://equipool.1ds.us/getting_started",
         "searchStrings": [
-            "RtaTeexMwYS8ZnFatVGxqLDW3QkoGhgNP4"
+            "t1Nf8tSxVhQKiGhQXLp73XdWgX2aDAhMr5F"
         ]
     },
     {
-        "poolName": "CoinBlockers",
-        "url": "https://safe.coinblockers.com/",
+        "poolName": "VOIDr",
+        "url": "https://voidr.net/",
         "searchStrings": [
-            "RvhDjLF3oKdABYFopnjGG1JkrkvZernoBx"
+            "t1KPD9ymeg7sCzAhrSPQ2BgLDRM2XGYqb3S",
+	    "t1dmNSMGoUXHaoKd48A8qudXhQPK5ughDv5",
+	    "t1QATR1DnhnrKEsv3tUvWzcjFHKEV4GPBZU"
         ]
     },
     {
-        "poolName": "Equihub.pro",
-        "url": "https://safecoin.equihub.pro/",
+        "poolName": "Alt Pool",
+        "url": "http://zel.altpool.pro/",
         "searchStrings": [
-            "Rm3VVePt9rYAv3DAkBsGxCWxMhuJjz8kFW"
+            "t1KyRNrgUUt8wPZso36LucEs8Q2hYNe2kAA"
         ]
     },
     {
-        "poolName": "Zergpool.com",
-        "url": "http://zergpool.com/",
+        "poolName": "Equihash.pro",
+        "url": "https://equihash.pro/",
         "searchStrings": [
-            "RfCo4kAu4bR5xudE7wyi83QpN3Gxq1jaX6"
+            "t1VoiZk4sdvzstMbDTVgYDzBgBEL3dCPuUZ",
+            "t1fp4WH4QL3zJa3zeFFu2PcT34tbMma5HUc",
+            "t1bkSfToeGPMjnm6AvEhjGZdFvRZvksD4SX",
+	    "t1LFTQYatpcPLqmkoW9kDL1ZmQK2jSqMSfk"
         ]
+    },
+    {
+        "poolName": "Zel Community Pool",
+        "url": "http://pool.zel.cash",
+        "searchStrings": [
+            "t1gZgxSEr9RcMBcUyHvkN1U2bJsz3CEV2Ve"
+        ]
+    },
+    {
+        "poolName": "Known Solo Pool",
+        "url": "",
+        "searchStrings": [
+            "t1cuFHgFUGDRzcciomtoVa2kEPNzRT2jJq9"
+        ]
+    },
+    {
+        "poolName": "FOMO mining",
+        "url": "https://fomominers.com/",
+        "searchStrings": [
+            "t1NrdtDLPb3LWDyexFuGXvXTGpp1b4envD8"
+        ]
+    },
+    {
+        "poolName": "Pickaxe Pro",
+        "url": "https://equi.pickaxe.pro/stats",
+        "searchStrings": [
+            "t1gydZuFtEChJvHCG4nrWkLRaxTWCeqg6bk"
+        ]
+    },
+    {
+        "poolName": "Power Mining",
+        "url": "https://powermining.pw/",
+        "searchStrings": [
+            "t1atqmtM2WW1HjEdZ6udmSFhsGQrxJ6LxrW"
+        ]
+    },
+    {
+        "poolName": "SoloPool.org",
+        "url": "https://zel.solopool.org/",
+        "searchStrings": [
+	    "t1ZVgGSRzm8ofu31vNkvtKhVunzabWKzGyV"
+        ]
+    },
+    {
+        "poolName": "2Miners PPLNS",
+        "url": "https://2miners.com/zel-mining-pool",
+        "searchStrings": [
+            "t1JKRwXGfKTGfPV1z48rvoLyabk31z3xwHa"
+        ]
+    },
+    {
+        "poolName": "2Miners SOLO",
+        "url": "https://2miners.com/solo-zel-mining-pool",
+        "searchStrings": [
+            "t1ZqpNxeMtPQVGtZ7hEkWJJv74v3FQHCEMj"
+        ]
+    },
+    {
+        "poolName": "Zergpool",
+        "url": "https://zergpool.com",
+        "searchStrings": [
+            "t1QqX8TFUXJNZH54YYqmf8Aq2Uk5uBCmkzS",
+	    "t1UKjfDTWTsn3KpNmJxVvdbdG6LhfaUjHeJ"
+        ]
+    },
+    {
+        "poolName": "Beardpool",
+        "url": "https://beardpool.rocks",
+        "searchStrings": [
+            "t1TzE8ggovcxrg1uHSVBvZbZmvTJZcKTNgY",
+	    "t1PoASpKEmKJhWxs5meepQeMs93BG5ofHpd"
+        ]
+    },
+    {
+        "poolName": "Luxor Mining Pool",
+        "url": "https://mining.luxor.tech",
+        "searchStrings": [
+            "t1gdnENdKNKFDvXijGUG7xdnGyj4To8LCpR"
+        ]
+    },
+    {
+        "poolName": "F2pool",
+        "url": "https://www.f2pool.com",
+        "searchStrings": [
+            "t1btYJifKAURW2T7kAMc6nZcs5n1LVwKYks"
+        ]
+    },
+    {
+        "poolName": "NLPool",
+        "url": "https://nlpool.nl",
+        "searchStrings": [
+            "t1Zpme4h5udMGdtxhxSQ7aPXwYwSoZXmxKf"
+        ]
+    },
+    {
+        "poolName": "Powermining Pool",
+        "url": "https://www.powermining.pw",
+        "searchStrings": [
+            "t1Nxe4adHmQSbZULjBo6q5ZADvoTQgHS8kW"
+        ]
+    },
+    {
+        "poolName": "FOMO",
+        "url": "https://fomominers.com",
+        "searchStrings": [
+            "t1c1qaaPpn7Q6iNXT9SSmH19EFR3cUnDBrW"
+        ]
+    },
+    {
+        "poolName": "Bobb's ZELpool",
+        "url": "https://bobbpool.be",
+        "searchStrings": [
+            "t1Zc5NvDgzbpJPqLz3sQ5JXajhWpUJ5JWv1"
+        ]
+    },
+    {
+        "poolName": "HuiBitChina",
+        "url": "http://poollab.whibbit.cn",
+        "searchStrings": [
+            "t1RWqUexd1r7gvarEr3e7L41mUEKs6DKhvp",
+	    "t1bpcum5bE1QdvUJQh7kXrDiipp8V4KQ4Yk"
+        ]
+    },
+    {
+        "poolName": "Equihub",
+        "url": "https://zel.equihub.pro/",
+        "searchStrings": [
+            "t1UGZZrHxA4k2oCK4hSdFTprwtieyZbLih9"
+        ]
+    },
+    {
+        "poolName": "Equihub SOLO",
+        "url": "https://solo-zel.equihub.pro/",
+        "searchStrings": [
+            "t1UKS3Pgwhovon1kPWCgpFbacsGJjb4keXM"
+        ]
+    },
+    {
+        "poolName": "ZEL Labs",
+        "url": "https://zel.zellabs.net",
+        "searchStrings": [
+            "t1fMvBXaLzC9i6YKYnD3VCUZN2oifSsCZkx"
+        ]
+    },
+    {
+        "poolName": "ZPOOL",
+        "url": "https://zpool.ca",
+        "searchStrings": [
+            "t1cVYU7yj2doV33B1Acn586FXn2GFSuwi3f"
+        ]
+    },
+    {
+    	"poolName": "Speedpool",
+    	"url": "https://equihash.speedpool.top/getting_started",
+    	"searchStrings": [
+      	    "t1WtKRxFEHDg4ZFXM8JnJD1fRmELc8gvtbD"
+    	]
     }
 ]
