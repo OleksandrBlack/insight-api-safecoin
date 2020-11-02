@@ -132,4 +132,32 @@
       "Zergpool http://zergpool.com"
     ]
 },
+{
+    "poolName": "Speedpool",
+    "url": "https://equihash.speedpool.top/getting_started",
+    "searchStrings": [
+      "Speedpool.top"
+    ]
+},
+{
+    "poolName": "Skypool Asia",
+    "url": "http://safe.skypool.co/",
+    "searchStrings": [
+      "safe.skypool.co asia"
+    ]
+},
+{
+    "poolName": "Skypool Europe",
+    "url": "http://safe.skypool.co/",
+    "searchStrings": [
+      "safe.skypool.co europe"
+    ]
+},
+{
+    "poolName": "Skypool North America",
+    "url": "http://safe.skypool.co/",
+    "searchStrings": [
+      "safe.skypool.co north america"
+    ]
+}
 ]

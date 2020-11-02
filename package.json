@@ -63,7 +63,7 @@
     "bitcore"
   ],
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=8.2.0"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha -R spec --recursive"
@@ -76,8 +76,8 @@
     "bitcore-message-safecoin": "OleksandrBlack/bitcore-message-safecoin",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
-    "lodash": "^4.17.15",
-    "lru-cache": "^4.0.1",
+    "lodash": "^4.17.20",
+    "lru-cache": "^4.1.1",
     "morgan": "^1.7.0",
     "request": "^2.64.0"
   },
