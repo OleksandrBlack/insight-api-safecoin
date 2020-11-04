@@ -1,8 +1,8 @@
 {
   "name": "insight-api-safecoin",
   "description": "A Safecoin blockchain REST and web socket API service for Bitcore Node.",
-  "repository": "git://github.com/OleksandrBlack/insight-api-safecoin.git",
   "version": "1.3.0",
+  "repository": "git://github.com/OleksandrBlack/insight-api-safecoin.git",
   "contributors": [
     {
       "name": "OleksandrBlack"
