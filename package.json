@@ -68,7 +68,7 @@
     "safecoin api",
     "blockchain api",
     "json",
-    "bitcore"
+    "bitcore",
     "zelcash"
   ],
   "engines": {
