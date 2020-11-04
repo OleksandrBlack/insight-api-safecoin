@@ -1,139 +1,202 @@
 # Insight API
 
-A Safecoin blockchain REST and web socket API service for [Bitcore Node](https://github.com/bitpay/bitcore-node).
+## Table of Contents
+* [Getting Started](#getting-started)
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/bitpay/insight-ui.
+### Statistics
+* [Total 24h](#total-24h-statistic)
+* [Transactions](#transactions-statistic)
+* [NetHash](#nethash-statistic)
+* [Pools](#pools-statistic)
+* [Fees](#fees-statistic)
+* [Outputs](#outputs-statistic)
+* [Difficulty](#difficulty-statistic)
+* [Total Supply](#total-supply-statistic)
 
-## Getting Started
+A Safecoin blockchain REST and web socket API service for [bitcore Node](https://github.com/OleksandrBlack/bitcore-node-safecoin).
 
-```bashl
-npm install -g bitcore-node@latest
-bitcore-node create mynode
-cd mynode
-bitcore-node install insight-api-safecoin
-bitcore-node start
-```
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/OleksandrBlack/insight-ui-safecoin.
 
-The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
+The API endpoints will be available by default at: `http://localhost:3001/insight-api-safecoin/`
 
 ## Prerequisites
 
-- [Bitcore Node 3.x](https://github.com/bitpay/bitcore-node)
+- [bitcore Node](https://github.com/OleksandrBlack/bitcore-node-safecoin)
 
 **Note:** You can use an existing Safecoin data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `safecoin.conf`, as well as a few other additional fields.
 
-## Notes on Upgrading from v0.3
-
-The unspent outputs format now has `satoshis` and `height`:
-```
-[
-  {
-    "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid":"d5f8a96faccf79d4c087fa217627bb1120e83f8ea1a7d84b1de4277ead9bbac1",
-    "vout":0,
-    "scriptPubKey":"76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount":0.000006,
-    "satoshis":600,
-    "confirmations":0,
-    "ts":1461349425
-  },
-  {
-    "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid": "bc9df3b92120feaee4edc80963d8ed59d6a78ea0defef3ec3cb374f2015bfc6e",
-    "vout": 1,
-    "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount": 0.12345678,
-    "satoshis: 12345678,
-    "confirmations": 1,
-    "height": 300001
-  }
-]
-```
-The `timestamp` property will only be set for unconfirmed transactions and `height` can be used for determining block order. The `confirmationsFromCache` is nolonger set or necessary, confirmation count is only cached for the time between blocks.
-
-There is a new `GET` endpoint or raw blocks at `/rawblock/<blockHash>`:
-
-Response format:
-```
-{
-  "rawblock": "blockhexstring..."
-}
-```
-
-There are a few changes to the `GET` endpoint for `/addr/[:address]`:
-
-- The list of txids in an address summary does not include orphaned transactions
-- The txids will be sorted in block order
-- The list of txids will be limited at 1000 txids
-- There are two new query options "from" and "to" for pagination of the txids (e.g. `/addr/[:address]?from=1000&to=2000`)
-
-Some additional general notes:
-- The transaction history for an address will be sorted in block order
-- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in safecoind.
-- The endpoint for `/peer` is no longer relevant connection to safecoind is via ZMQ.
-- `/tx` endpoint results will now include block height, and spentTx related fields will be set to `null` if unspent.
-- `/block` endpoint results does not include `confirmations` and will include `poolInfo`.
-
-## Notes on Upgrading from v0.2
-
-Some of the fields and methods are not supported:
-
-The `/tx/<txid>` endpoint JSON response will not include the following fields on the "vin"
-object:
-- `doubleSpentTxId` // double spends are not currently tracked
-- `isConfirmed` // confirmation of the previous output
-- `confirmations` // confirmations of the previous output
-- `unconfirmedInput`
-
-The `/tx/<txid>` endpoint JSON response will not include the following fields on the "vout"
-object.
-- `spentTs`
-
-The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking safecoind.
-
-Plug-in support for Insight API is also no longer available, as well as the endpoints:
-- `/email/retrieve`
-- `/rates/:code`
-
-Caching support has not yet been added in the v0.3 upgrade.
-
 ## Query Rate Limit
 
-To protect the server, insight-api has a built it query rate limiter. It can be configurable in `bitcore-node.json` with:
+To protect the server, insight-api-safecoin has a built it query rate limiter. It can be configurable in `bitcore-node.json` with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "insight-api-safecoin": {
       "rateLimiterOptions": {
         "whitelist": ["::ffff:127.0.0.1"]
       }
     }
   }
 ```
-With all the configuration options available: https://github.com/bitpay/insight-api/blob/master/lib/ratelimiter.js#L10-17
+With all the configuration options available: https://github.com/OleksandrBlack/insight-api-safecoin/blob/master/lib/ratelimiter.js#L10-17
 
 Or disabled entirely with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "insight-api-safecoin": {
       "disableRateLimiter": true
     }
   }
-  ```
-  
+```
+
+**Note:** `routePrefix` can be configurable in `bitcore-node.json` with:
+
+``` json
+  "servicesConfig": {
+    "insight-api-safecoin": {
+      "routePrefix": "insight-api-safecoin",
+    }
+  }
+```
+
+
 
 ## API HTTP Endpoints
 
+## Statistics
+
+### Total 24h Statistic
+```
+  `GET` /insight-api-safecoin/statistics/total
+```
+This would return:
+```
+    {
+        n_blocks_mined: 1268,
+        time_between_blocks: 86301,
+        mined_currency_amount: 1268000000000000,
+        transaction_fees: 633992859997,
+        number_of_transactions: 2547,
+        outputs_volume: 46920965480,
+        difficulty: 981808167.7687966,
+    }
+```
+### Transactions Statistic
+```
+  `GET` /insight-api-safecoin/statistics/transactions?days=14
+```
+This would return:
+```
+[
+    {
+      date: "2017-05-30",
+        transaction_count: 1087,
+        block_count: 541
+    },
+    ...
+]
+```
+
+### Fees Statistic
+```
+  `GET` /insight-api-safecoin/statistics/fees?days=14
+```
+This would return:
+```
+[
+   {
+       date: "2017-06-06",
+       fee: 500000000
+   },
+   ...
+]
+```
+### Outputs Statistic
+```
+  `GET` /insight-api-safecoin/statistics/outputs?days=14
+```
+This would return:
+```
+[
+   {
+       date: "2017-06-06",
+       sum: 0
+   },
+   ...
+]
+```
+### Difficulty Statistic
+```
+  `GET` /insight-api-safecoin/statistics/difficulty?days=14
+```
+This would return:
+```
+[
+    {
+        date: "2017-06-06",
+        sum: 0
+    },
+    ...
+]
+```
+### Pools Statistic
+```
+  `GET` /insight-api-safecoin/statistics/pools?date=2018-05-14
+```
+This would return:
+```
+[
+    {
+        date: "2018-05-14",
+        ...
+    }
+    
+]
+```
+### Nethash Statistic
+```
+  `GET` /insight-api-safecoin/statistics/network-hash?days=14
+```
+This would return:
+```
+[
+    {
+        date: "2017-06-06",
+        sum: 0
+    },
+    ...
+]
+```
+### Total Supply Statistic
+
+```
+  `GET` /insight-api-safecoin/supply
+```
+or
+```
+  `GET` /insight-api-safecoin/supply?format=object
+```
+This would return:
+```
+100091264
+```
+or
+```
+{
+    "supply": "100091264"
+}
+```
+
 ### Block
 ```
-  /insight-api/block/[:hash]
-  /insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /insight-api-safecoin/block/[:hash]
+  /insight-api-safecoin/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api/block-index/[:height]
-  /insight-api/block-index/0
+  /insight-api-safecoin/block-index/[:height]
+  /insight-api-safecoin/block-index/0
 ```
 This would return:
 ```
@@ -146,8 +209,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api/rawblock/[:blockHash]
-  /insight-api/rawblock/[:blockHeight]
+  /insight-api-safecoin/rawblock/[:blockHash]
+  /insight-api-safecoin/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -161,7 +224,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api/blocks?limit=3&blockDate=2016-04-22
+  /insight-api-safecoin/blocks?limit=3&blockDate=2016-04-22
 ```
 
 Example response:
@@ -195,31 +258,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api/tx/[:txid]
-  /insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api/rawtx/[:rawid]
-  /insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-safecoin/tx/[:txid]
+  /insight-api-safecoin/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /insight-api-safecoin/rawtx/[:rawid]
+  /insight-api-safecoin/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /insight-api-safecoin/addr/[:addr][?noTxList=1][&from=&to=]
+  /insight-api-safecoin/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /insight-api-safecoin/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api/addr/[:addr]/balance
-  /insight-api/addr/[:addr]/totalReceived
-  /insight-api/addr/[:addr]/totalSent
-  /insight-api/addr/[:addr]/unconfirmedBalance
+  /insight-api-safecoin/addr/[:addr]/balance
+  /insight-api-safecoin/addr/[:addr]/totalReceived
+  /insight-api-safecoin/addr/[:addr]/totalSent
+  /insight-api-safecoin/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api/addr/[:addr]/utxo
+  /insight-api-safecoin/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -250,13 +313,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/utxo
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /insight-api-safecoin/addrs/[:addrs]/utxo
+  /insight-api-safecoin/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api/addrs/utxo
+  /insight-api-safecoin/addrs/utxo
 ```
 
 POST params:
@@ -266,25 +329,25 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 
 ### Transactions by Block
 ```
-  /insight-api/txs/?block=HASH
-  /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /insight-api-safecoin/txs/?block=HASH
+  /insight-api-safecoin/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 ### Transactions by Address
 ```
-  /insight-api/txs/?address=ADDR
-  /insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /insight-api-safecoin/txs/?address=ADDR
+  /insight-api-safecoin/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /insight-api-safecoin/addrs/[:addrs]/txs[?from=&to=]
+  /insight-api-safecoin/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api/addrs/txs
+  /insight-api-safecoin/addrs/txs
 ```
 
 POST params:
@@ -330,7 +393,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api/tx/send
+  /insight-api-safecoin/tx/send
 ```
 POST params:
 ```
@@ -356,17 +419,17 @@ POST response:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api/sync
+  /insight-api-safecoin/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api/peer
+  /insight-api-safecoin/peer
 ```
 
 ### Status of the Safecoin Network
 ```
-  /insight-api/status?q=xxx
+  /insight-api-safecoin/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -375,18 +438,27 @@ Where "xxx" can be:
  * getDifficulty
  * getBestBlockHash
  * getLastBlockHash
+ * getMiningInfo
+ * getPeerInfo
 
 
 ### Utility Methods
 ```
-  /insight-api/utils/estimatefee[?nbBlocks=2]
+  /insight-api-safecoin/utils/estimatefee[?nbBlocks=6]
 ```
-
+Sample output:
+````
+{
+  "6":0.00001047
+}
+````
 
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).
 
-The following are the events published by insight:
+### `inv` room:
+
+The following are the events published by insight in the `inv` room:
 
 `tx`: new transaction received from network. This event is published in the 'inv' room. Data will be a app/models/Transaction object.
 Sample output:
@@ -408,22 +480,152 @@ Sample output:
   ...
 }
 ```
-
-`<safecoinAddress>`: new transaction concerning <safecoinAddress> received from network. This event is published in the `<safecoinAddress>` room.
-
-`status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
-
+`info`: General Statistics Info
 Sample output:
 ```
 {
-  blocksToSync: 164141,
-  syncedBlocks: 475,
-  upToExisting: true,
-  scanningBackward: true,
-  isEndGenesis: true,
-  end: "000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943",
-  isStartGenesis: false,
-  start: "000000009f929800556a8f3cfdbe57c187f2f679e351b12f7011bfc276c41b6d"
+info:
+  {
+  balance: 0
+  blocks: 245823
+  connections: 123
+  difficulty: 18231.18159436285
+  errors: ""
+  keypoololdest: 1528311725
+  keypoolsize: 2000
+  network: "livenet"
+  paytxfee: 0
+  protocolversion: 70015
+  proxy: ""
+  relayfee: 0.00001
+  reward: 500000000000
+  testnet: false
+  timeoffset: 0
+  version: 152000
+  walletversion: 10000
+  }
+miningInfo:
+  {
+  blocks: 245823
+  difficulty: 18231.18159436285
+  networkhashps: 1311616809584.154
+  chain: "main"
+  }
+supply: "1229115000"
+```
+`markets_info`: General Price and Market data
+Sample output:
+```
+{
+  24h_volume_usd: "280378.0"
+  available_supply: "1223775205.0"
+  market_cap_usd: "36072365.0"
+  percent_change_24h: "-0.25"
+  price_btc: "0.00000383"
+  price: "0.0294763"
+}
+```
+### `safecoin` room: 
+
+`safecoin/tx`: Returns a transformed tx as a json element detailing the transaction
+Sample output:
+```
+{
+txid: "4aef2faba5add0a467b4bc636024c7ed2501215a171df7cb7ed7376fe6bfeeca"
+valueOut: 5000
+vin:(0)
+  []
+  length: 0
+vout: (1)
+  [
+    {
+    value: 500000000000
+    address: "RKbh4QopviguAWveJgjmoFKNMxewRFyvAb"
+    }
+  ] 
+isRBF: true
+}
+```
+
+`safecoin/block`: Returns a transformed block as a json element detailing the block
+Sample output:
+```
+{
+block:
+  {
+  bits: "1b03983c"
+  chainwork: "000000000000000000000000000000000000000000000000a28c9a9e0fbcac74"
+  confirmations: 1
+  difficulty: 18231.18159436
+  hash: "0000000000031522362b3b0d4579ed4bbee206fb7397383e835134ee1c394c2d"
+  height: 245845
+  isMainChain: true
+  merkleroot: "7e036837f82cb526cc44db73504ab9c051c6f37eeb7e64aa543757b4405b0d1b"
+  minedBy: "RVG96MbaKEDFzzj9NzbAuxkDt86KAm2Qj5"
+  nonce: 1578377516
+  poolInfo: {poolName: "f2pool", url: "http://f2pool.com/"}
+  previousblockhash: "0000000000037953f3d835fb94e168520b2a7edbb1268ef987048dfa916cd25f"
+  reward: 5000
+  size: 26990
+  time: 1528388943
+  tx:(7) 
+    [
+    "ea4f02a17146117e5961cfe01e7e00067f59b2167d17a415717fadb8a823456e"
+    "d9ec249e1a2297610b5af03238f2de34bd1ba739188fd1ea33c464fe77a07ce1"
+    "062c951f32f60937c58f009e5c7eaf19db93148e9b677651fe83f6ebfded195e"
+    "4d7853c1aa1c9b7722ab7ec34bf053a4661eb82f68075603f69006ece4f21f1c"
+    "63b0219ee6d3204dc604660d2aa6eed6fd05dea912777e14322a3ed56886a102"
+    "c5e302e3d9b7be5dfab1a219052fb8424071407e978cb57e1a9a0986e9c7f96d"
+    "01ee0c906791f9c3e613a4c4b8d87c45b50b9e12058dd69ce5a647e028710b6d"
+    ]
+  version: 536870912
+  }
+transactions: (7)
+  [
+    {
+    blockhash: "0000000000031522362b3b0d4579ed4bbee206fb7397383e835134ee1c394c2d"
+    blockheight: 245845
+    blocktime: 1528388943
+    confirmations: 1
+    isCoinBase: true
+    locktime: 703249321
+    size: 250
+    time: 1528388943
+    txid: "ea4f02a17146117e5961cfe01e7e00067f59b2167d17a415717fadb8a823456e"
+    valueOut:5000.0003294
+    version:1
+    vin: (1)
+      [
+        {
+        coinbase: "0355c0032cfabe6d6d0000000000000000000000000000...0000000000000000000"
+        n: 0
+        sequence: 3
+        }
+      ]
+    vout: (2)
+      [
+        {
+        n: 0
+        scriptPubKey:
+          {
+          hex: "76a914db2f9b86eb5eae8dae8dfb1da75440584be36daa88ac"
+          asm: "OP_DUP OP_HASH160 db2f9b86eb5eae8dae8dfb1da75440584be36daa OP_EQUALVERIFY OP_CHECKSIG"
+          addresses: (1)
+            [
+            "RVG96MbaKEDFzzj9NzbAuxkDt86KAm2Qj5"
+            ]
+          type: "pubkeyhash"
+          }
+        spentHeight: null
+        spentIndex: null
+        spentTxId: null
+        value: "5000.00032940"
+        }
+       ... 
+      ]
+    }
+    ...
+  ]
 }
 ```
 

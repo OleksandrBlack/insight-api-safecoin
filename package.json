@@ -1,8 +1,8 @@
 {
   "name": "insight-api-safecoin",
   "description": "A Safecoin blockchain REST and web socket API service for Bitcore Node.",
-  "version": "0.4.3",
   "repository": "git://github.com/OleksandrBlack/insight-api-safecoin.git",
+  "version": "1.1.0",
   "contributors": [
     {
       "name": "OleksandrBlack"
@@ -45,6 +45,14 @@
     {
       "name": "Jack Grigg",
       "email": "jack@z.cash"
+    },
+    {
+      "name": "TheTrunk",
+      "email": "tadeas.kmenta@zel.cash"
+    },
+    {
+      "name": "Simon Liu",
+      "email": "simon@z.cash"
     }
   ],
   "bugs": {
@@ -61,6 +69,7 @@
     "blockchain api",
     "json",
     "bitcore"
+    "zelcash"
   ],
   "engines": {
     "node": ">=8.2.0"
@@ -74,13 +83,16 @@
     "async": "*",
     "bitcore-lib-safecoin": "OleksandrBlack/bitcore-lib-safecoin",
     "bitcore-message-safecoin": "OleksandrBlack/bitcore-message-safecoin",
+    "bignumber.js": "^4.0.2",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^4.17.20",
     "lru-cache": "^4.1.1",
+    "mongoose": "5.1.7",
     "morgan": "^1.7.0",
-    "request": "^2.64.0"
+    "request": "^2.83.0"
   },
+  "peerDependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
