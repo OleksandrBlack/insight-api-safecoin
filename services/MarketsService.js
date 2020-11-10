@@ -11,7 +11,7 @@ function MarketsService(options) {
     this.info = {
         price: 0,
         price_btc: 0,
-        market_cap_usd: 0,
+        market_cap: 0,
         total_volume_24h: 0,
         delta_24h: 0
     };
@@ -52,7 +52,7 @@ MarketsService.prototype._updateInfo = function () {
                     self.info.price_btc = body.markets[0].price || 0;
                 }
             }
-            self.info.market_cap_usd = body.market_cap || 0;
+            self.info.market_cap = body.market_cap || 0;
             self.info.total_volume_24h = body.total_volume_24h || 0;
             self.info.delta_24h = body.delta_24h || 0;
             needToTrigger = true;
