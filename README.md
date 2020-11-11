@@ -13,15 +13,15 @@
 * [Difficulty](#difficulty-statistic)
 * [Total Supply](#total-supply-statistic)
 
-A Safecoin blockchain REST and web socket API service for [bitcore Node](https://github.com/OleksandrBlack/bitcore-node-safecoin).
+A Safecoin blockchain REST and web socket API service for [bitcore Node](https://github.com/Fair-Exchange/bitcore-node-safecoin).
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/OleksandrBlack/insight-ui-safecoin.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/Fair-Exchange/insight-ui-safecoin.
 
 The API endpoints will be available by default at: `http://localhost:3001/insight-api-safecoin/`
 
 ## Prerequisites
 
-- [bitcore Node](https://github.com/OleksandrBlack/bitcore-node-safecoin)
+- [bitcore Node](https://github.com/Fair-Exchange/bitcore-node-safecoin)
 
 **Note:** You can use an existing Safecoin data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `safecoin.conf`, as well as a few other additional fields.
 
@@ -37,7 +37,7 @@ To protect the server, insight-api-safecoin has a built it query rate limiter. I
     }
   }
 ```
-With all the configuration options available: https://github.com/OleksandrBlack/insight-api-safecoin/blob/master/lib/ratelimiter.js#L10-17
+With all the configuration options available: https://github.com/Fair-Exchange/insight-api-safecoin/blob/master/lib/ratelimiter.js#L10-17
 
 Or disabled entirely with:
 ``` json
